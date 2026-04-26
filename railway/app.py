@@ -10,28 +10,18 @@ def video():
     return f"""
     <html>
       <head>
+        <meta property="og:type" content="video.other" />
+        <meta property="og:video" content="{url}" />
+        <meta property="og:video:type" content="video/mp4" />
+        <meta property="og:video:width" content="1280" />
+        <meta property="og:video:height" content="720" />
+        <meta property="og:url" content="{url}" />
         <link rel="alternate" type="application/json+oembed"
           href="{base}/oembed?url={url}"
           title="video" />
       </head>
-      <body></body>
+      <body>
+        <video src="{url}" controls width="1280" height="720"></video>
+      </body>
     </html>
     """, 200, {"Content-Type": "text/html"}
-
-@app.route("/oembed")
-def oembed():
-    url = request.args.get("url")
-    return jsonify({
-        "type": "video",
-        "version": "1.0",
-        "title": "Video",
-        "width": 1280,
-        "height": 720,
-        "html": f'<video src="{url}" controls></video>',
-        "provider_name": "VideoEmbed",
-        "provider_url": os.environ.get("BASE_URL", "http://localhost:5000")
-    })
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
