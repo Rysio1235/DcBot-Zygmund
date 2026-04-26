@@ -15,7 +15,8 @@ def video():
         <meta property="og:video:type" content="video/mp4" />
         <meta property="og:video:width" content="1280" />
         <meta property="og:video:height" content="720" />
-        <meta property="og:url" content="{url}" />
+        <meta property="og:video:url" content="{url}" />
+        <meta property="og:video:secure_url" content="{url}" />
         <link rel="alternate" type="application/json+oembed"
           href="{base}/oembed?url={url}"
           title="video" />
